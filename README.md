@@ -103,7 +103,6 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
 * `-c, -C, --complement` use the complement of `SET1`
 * `-d, --delete` delete characters in `SET1` instead of translating
 * `-s, --squeeze-repeats` squeeze (after translation/deletion) repeated characters in last specified set into one
-* `-t, --truncate-set1` truncate `SET1` to the length of `SET2`
 
 **Other**
 

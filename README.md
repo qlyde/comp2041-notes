@@ -79,6 +79,5 @@ Every regular expression can be written using only `() * | \`.
 * `[[:alnum:]]` letters and digits
 * `[[:blank:]]` space and tab
 
-regex
 redirection
 pipelines

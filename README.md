@@ -6,13 +6,15 @@
 2. [Unix Filters](#unix-filters)
     * [`cat`](#cat)
     * [`grep`](#grep)
+    * [`wc`](#wc)
+    * [`tr`](#tr)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements
 
 * `arg` or `<arg>` required argument
 * `[arg]` optional argument
-* `[arg...]` any number of arguments
+* `[arg]...` any number of arguments
     * `arg...` one or more arguments
 * `[arg1 | arg2]` mutually exclusive arguments (optional)
     * `{arg1 | arg2}` mutually exclusive arguments, one of which is required
@@ -25,7 +27,7 @@
 
 Concatenate FILE(s) to standard output.
 
-**Usage:** `cat [OPTION...] [FILE...]`
+**Usage:** `cat [OPTION]... [FILE]...`
 
 **Useful Options**
 
@@ -43,14 +45,18 @@ Concatenate FILE(s) to standard output.
 
 Print lines that match a regular expression.
 
-**Usage:** `grep [OPTION...] PATTERNS [FILE...]`
+**Usage:** `grep [OPTION]... PATTERNS [FILE]...`
+
+**Variations**
+
+* `-G, --basic-regexp` interpret PATTERNS as basic regex (default)
+* `-E, --extended-regexp` interpret PATTERNS as extended regex (`egrep`)
+* `-F, --fixed-strings` interpret PATTERNS as fixed strings, not regex (`fgrep`)
+* `-P, --perl-regexp` interpret PATTERNS as Perl-compatible regex
+* `-r, --recursive` read all files under each directory recursively (`rgrep`)
 
 **Useful Options**
 
-* `-E, --extended-regexp` interpret PATTERNS as extended regex (`egrep`)
-* `-F, --fixed-strings` interpret PATTERNS as fixed strings, not regex (`fgrep`)
-* `-G, --basic-regexp` interpret PATTERNS as basic regex (default)
-* `-P, --perl-regexp` interpret PATTERNS as Perl-compatible regex
 * `-i, --ignore-case` ignore case in patterns
 * `-v, --invert-match` invert matching to select non-matching lines only
 * `-w, --word-regexp` select only lines containing matches that form whole words
@@ -61,7 +67,6 @@ Print lines that match a regular expression.
 * `-n, --line-number` prefix each output line with 1-based line number
 * `-a, --text` process a binary file as if it were text
 * `-f FILE, --file=FILE` obtain patterns from FILE, one per line
-* `-r, --recursive` read all files under each directory recursively (`rgrep`)
 
 **Other**
 
@@ -71,6 +76,36 @@ Print lines that match a regular expression.
 * If no FILE given, `rgrep` or `grep -r` or `grep -R` recursively searches the working directory
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches
+
+### `wc`
+
+Print newline, word and byte counts for each file (and total counts if multiple files).
+
+**Usage:** `wc [OPTION]... [FILE]...`
+
+**Useful Options**
+
+* `-c, --bytes` print byte counts (UTF-8 uses 1-4 bytes, ASCII uses 1 byte)
+* `-m, --chars` print character counts
+* `-l, --lines` print newline counts
+* `-w, --words` print word counts
+* `-L, --max-line-length` print maximum line length
+
+### `tr`
+
+Translate, squeeze and/or delete characters from (**only**) standard input.
+
+**Usage:** `tr [OPTION]... SET1 [SET2]`
+
+**Useful Options**
+
+* ``
+* ``
+* ``
+
+**Other**
+
+*
 
 ## Regular Expressions
 

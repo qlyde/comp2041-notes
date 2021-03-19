@@ -50,7 +50,7 @@ Every regular expression can be written using only `() * | \`.
 * `(...)` group
 * `(a|b)` a or b (**alternation** or OR operand)
 * `[abc]` any one of a, b or c
-* `[^abc]` any one not a, b or c
+* `[^abc]` any one **not** a, b or c
 * `[a-z]` a to z (inclusive)
 
 ### Anchors
@@ -77,7 +77,6 @@ Every regular expression can be written using only `() * | \`.
 * `[[:alpha:]]` letters
 * `[[:digit:]]` digits
 * `[[:alnum:]]` letters and digits
-* `[[:word:]]` letters, digits and underscore
 * `[[:blank:]]` space and tab
 
 regex

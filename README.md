@@ -73,6 +73,7 @@ Print lines that match a regular expression.
 **Other**
 
 * Typically, PATTERNS should be **single quoted**
+* Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively
 * In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches

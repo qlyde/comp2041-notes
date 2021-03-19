@@ -96,8 +96,8 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
 
 **Usage:** `tr [OPTION]... SET1 [SET2]`
 
-* Each character in `SET1` is translated to the **corresponding** character in `SET2`
-* If `SET2` is shorter than `SET1`, then the last character in `SET2` is used
+* Each character in `SET1` is translated/mapped to the **corresponding** character in `SET2`
+* If `SET2` is shorter than `SET1`, then the last character in `SET2` is used to map the remainder of `SET1`
 * If `SET2` is longer than `SET1`, then excess characters in `SET2` are ignored
 * Sets interpret certain sequences:
     - `\\` backslash

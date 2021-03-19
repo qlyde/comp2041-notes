@@ -58,7 +58,7 @@ Print lines that match a regular expression.
 * `-o, --only-matching` print only the matched parts of a matching line
 * `-q, --quiet, --silent` do not write anything to standard output and immediately exit with status 0 if match found
 * `-H, --with-filename` print also the file name for each match
-* `-n, --line-number` prefix each output line with line number, starting from 1
+* `-n, --line-number` prefix each output line with 1-based line number
 * `-a, --text` process a binary file as if it were text
 * `-f FILE, --file=FILE` obtain patterns from FILE, one per line
 * `-r, --recursive` read all files under each directory recursively (`rgrep`)
@@ -67,8 +67,7 @@ Print lines that match a regular expression.
 
 * In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * Exit status is 0 if a match is found, otherwise it is 1
-* Typically, PATTERNS should be **quoted**
-* FILE `-` indicates standard input
+* Typically, PATTERNS should be **single quoted**
 * If no FILE given, `rgrep` or `grep -r` or `grep -R` recursively searches the working directory
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches

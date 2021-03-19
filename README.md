@@ -1,5 +1,13 @@
 # comp2041-notes
 
+## Table of Contents
+
+1. [Usage Statements](#usage-statements)
+2. [Unix Filters](#unix-filters)
+    * [cat](#cat)
+    * [grep](#grep)
+3. [Regular Expressions](#regular-expressions)
+
 ## Usage Statements
 
 * `arg` or `<arg>` required argument

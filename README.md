@@ -6,10 +6,10 @@ WIP!
 
 1. [Usage Statements](#usage-statements)
 2. [Unix Filters](#unix-filters)
-    * [`cat`](#cat)
-    * [`grep`](#grep)
-    * [`wc`](#wc)
-    * [`tr`](#tr)
+    - [`cat`](#cat)
+    - [`grep`](#grep)
+    - [`wc`](#wc)
+    - [`tr`](#tr)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements
@@ -51,10 +51,10 @@ Print lines that match a regular expression.
 
 **Variations**
 
-* `-G, --basic-regexp` interpret PATTERNS as basic regex (default)
-* `-E, --extended-regexp` interpret PATTERNS as extended regex (`egrep`)
-* `-F, --fixed-strings` interpret PATTERNS as fixed strings, not regex (`fgrep`)
-* `-P, --perl-regexp` interpret PATTERNS as Perl-compatible regex
+* `-G, --basic-regexp` interpret `PATTERNS` as basic regex (default)
+* `-E, --extended-regexp` interpret `PATTERNS` as extended regex (`egrep`)
+* `-F, --fixed-strings` interpret `PATTERNS` as fixed strings, not regex (`fgrep`)
+* `-P, --perl-regexp` interpret `PATTERNS` as Perl-compatible regex
 * `-r, --recursive` read all files under each directory recursively (cwd if none specified) (`rgrep`)
 
 **Useful Options**
@@ -62,17 +62,17 @@ Print lines that match a regular expression.
 * `-i, --ignore-case` ignore case in patterns
 * `-v, --invert-match` invert matching to select non-matching lines only
 * `-w, --word-regexp` select only lines containing matches that form whole words
-* `-c, --count` print only the count of matching lines
 * `-o, --only-matching` print only the matched parts of a matching line
-* `-q, --quiet, --silent` do not write anything to standard output and immediately exit with status 0 if match found
-* `-H, --with-filename` print also the file name for each match
+* `-H, --with-filename` print also the filename for each match
+* `-c, --count` print only the count of matching lines
 * `-n, --line-number` prefix each output line with 1-based line number
 * `-a, --text` process a binary file as if it were text
-* `-f FILE, --file=FILE` obtain patterns from FILE, one per line
+* `-f FILE, --file=FILE` obtain patterns from `FILE`, one per line
+* `-q, --quiet, --silent` do not write to standard output and immediately exit with status 0 if match found
 
 **Other**
 
-* Typically, PATTERNS should be **single quoted**
+* Typically, `PATTERNS` should be **single quoted**
 * Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively
 * In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-L, --files-without-match` print only the name of each file with no matches
@@ -100,13 +100,21 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
 
 **Useful Options**
 
-* ``
-* ``
-* ``
+* `-c, -C, --complement` use the complement of `SET1`
+* `-d, --delete` delete characters in `SET1` instead of translating
+* `-s, --squeeze-repeats` squeeze (after translation/deletion) repeated characters in last specified set into one
+* `-t, --truncate-set1` truncate `SET1` to the length of `SET2`
 
 **Other**
 
-*
+* Each character in `SET1` is translated to the **corresponding** character in `SET2`
+* If `SET2` is shorter than `SET1`, then the last character in `SET2` is used
+* If `SET2` is longer than `SET1`, then excess characters in `SET2` are ignored
+* Sets interpret certain sequences:
+    - `\\` backslash
+    - `a-z` a to z
+    - `[a*]` in `SET2` copies 'a' until length of `SET1`
+    - `[:upper:]`, `[:lower:]`, etc
 
 ## Regular Expressions
 

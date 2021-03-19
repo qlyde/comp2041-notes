@@ -55,7 +55,7 @@ Print lines that match a regular expression.
 * `-E, --extended-regexp` interpret PATTERNS as extended regex (`egrep`)
 * `-F, --fixed-strings` interpret PATTERNS as fixed strings, not regex (`fgrep`)
 * `-P, --perl-regexp` interpret PATTERNS as Perl-compatible regex
-* `-r, --recursive` read all files under each directory recursively (`rgrep`)
+* `-r, --recursive` read all files under each directory recursively (cwd if none specified) (`rgrep`)
 
 **Useful Options**
 
@@ -72,10 +72,8 @@ Print lines that match a regular expression.
 
 **Other**
 
-* In basic regular expressions, characters `? + | {} ()` lose their special meaning
-* Exit status is 0 if a match is found, otherwise it is 1
 * Typically, PATTERNS should be **single quoted**
-* If no FILE given, `rgrep` or `grep -r` or `grep -R` recursively searches the working directory
+* In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches
 

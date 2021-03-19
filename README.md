@@ -4,8 +4,8 @@
 
 1. [Usage Statements](#usage-statements)
 2. [Unix Filters](#unix-filters)
-    * [cat](#cat)
-    * [grep](#grep)
+    * [`cat`](#cat)
+    * [`grep`](#grep)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements

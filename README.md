@@ -10,6 +10,8 @@ WIP!
     - [`grep`](#grep)
     - [`wc`](#wc)
     - [`tr`](#tr)
+    - [`head`](#head)
+    - [`tail`](#tail)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements
@@ -27,7 +29,7 @@ WIP!
 
 ### `cat`
 
-Concatenate FILE(s) to standard output.
+Concatenate file(s) to standard output.
 
 **Usage:** `cat [OPTION]... [FILE]...`
 
@@ -114,6 +116,22 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
     - `a-z` a to z
     - `[a*]` in `SET2` copies 'a' until length of `SET1`
     - `[:upper:]`, `[:lower:]`, etc
+
+### `head`
+
+Print the first 10 lines of each file to standard output.
+
+**Usage:** `head [OPTION]... [FILE]...`
+
+* `-n, --lines=NUM` print the first `NUM` lines instead of the first 10
+
+### `tail`
+
+Print the last 10 lines of each file to standard output.
+
+**Usage:** `tail [OPTION]... [FILE]...`
+
+* `-n, --lines=NUM` print the last `NUM` lines instead of the last 10
 
 ## Regular Expressions
 

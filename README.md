@@ -16,10 +16,10 @@ WIP!
 
 * `arg` or `<arg>` required argument
 * `[arg]` optional argument
+* `arg...` one or more arguments
 * `[arg]...` any number of arguments
-    * `arg...` one or more arguments
 * `[arg1 | arg2]` mutually exclusive arguments (optional)
-    * `{arg1 | arg2}` mutually exclusive arguments, one of which is required
+* `{arg1 | arg2}` mutually exclusive arguments, one of which is required
 * `[-n number]` option with operand `number`
 * `[-n]` option without operands
 

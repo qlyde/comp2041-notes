@@ -12,6 +12,7 @@ WIP!
     - [`tr`](#tr)
     - [`head`](#head)
     - [`tail`](#tail)
+    - [`cut`](#cut)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements
@@ -40,20 +41,21 @@ Concatenate file(s) to standard output.
 * `-s, --squeeze-blank` squeeze consecutive blank lines into one
 * `-T, --show-tabs` display TAB characters as `^I`
 
-**Other**
-
-* With no `FILE`, or when `FILE` is `-`, read standard input
-* `tac` concatenates and prints files in *reverse*
-
 ### `grep`
 
 Print lines that match a regular expression.
 
 **Usage:** `grep [OPTION]... PATTERNS [FILE]...`
 
+* Typically, `PATTERNS` should be **single-quoted** to avoid misinterpretation
+    - eg. `grep | file.txt` fails but `grep '|' file.txt` does not
+
 **Variations**
 
+Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively.
+
 * `-G, --basic-regexp` interpret `PATTERNS` as basic regex (default)
+    - In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-E, --extended-regexp` interpret `PATTERNS` as extended regex (`egrep`)
 * `-F, --fixed-strings` interpret `PATTERNS` as fixed strings, not regex (`fgrep`)
 * `-P, --perl-regexp` interpret `PATTERNS` as Perl-compatible regex
@@ -71,12 +73,6 @@ Print lines that match a regular expression.
 * `-a, --text` process a binary file as if it were text
 * `-f FILE, --file=FILE` obtain patterns from `FILE`, one per line
 * `-q, --quiet, --silent` do not write to standard output and immediately exit with status 0 if match found
-
-**Other**
-
-* Typically, `PATTERNS` should be **single quoted**
-* Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively
-* In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches
 
@@ -100,14 +96,6 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
 
 **Usage:** `tr [OPTION]... SET1 [SET2]`
 
-**Useful Options**
-
-* `-c, -C, --complement` use the complement of `SET1`
-* `-d, --delete` delete characters in `SET1` instead of translating
-* `-s, --squeeze-repeats` squeeze (after translation/deletion) repeated characters in last specified set into one
-
-**Other**
-
 * Each character in `SET1` is translated to the **corresponding** character in `SET2`
 * If `SET2` is shorter than `SET1`, then the last character in `SET2` is used
 * If `SET2` is longer than `SET1`, then excess characters in `SET2` are ignored
@@ -116,6 +104,12 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
     - `a-z` a to z
     - `[a*]` in `SET2` copies 'a' until length of `SET1`
     - `[:upper:]`, `[:lower:]`, etc
+
+**Useful Options**
+
+* `-c, -C, --complement` use the complement of `SET1`
+* `-d, --delete` delete characters in `SET1` instead of translating
+* `-s, --squeeze-repeats` squeeze (after translation/deletion) repeated characters in last specified set into one
 
 ### `head`
 
@@ -132,6 +126,32 @@ Print the last 10 lines of each file to standard output.
 **Usage:** `tail [OPTION]... [FILE]...`
 
 * `-n NUM, --lines=NUM` print the last `NUM` lines instead of the last 10
+
+### `cut`
+
+Print selected parts of lines from each file to standard output.
+
+**Usage:** `cut OPTION... [FILE]...`
+
+* Use only **one** of `-f` or `-c`
+
+**Useful Options**
+
+* `-d DELIM, --delimiter=DELIM` use `DELIM` instead of TAB to delimit fields
+    - `DELIM` should be single-quoted to avoid misinterpretation, eg. `-d|` fails but `-d'|'` does not
+* `-f LIST, --fields=LIST` select only these fields
+    - `-fN` select field N
+    - `-fN-` select field N and onward
+    - `-f-N` select fields 1 to N (inclusive)
+    - `-fN-M` select fields N to M (inclusive)
+    - `-fN,M` select fields N and M
+* `-c LIST, --characters=LIST` select only these characters
+    - `-cN` select character N
+    - `-cN-` select character N and onward
+    - `-c-N` select characters 1 to N (inclusive)
+    - `-cN-M` select characters N to M (inclusive)
+    - `-cN,M` select characters N and M
+* `-s, --only-delimited` do not print lines not containing delimiters
 
 ## Regular Expressions
 
@@ -179,7 +199,7 @@ Every regular expression can be written using only `() * | \`.
 * `[[:alpha:]]` letters
 * `[[:digit:]]` digits
 * `[[:alnum:]]` letters and digits
-* `[[:blank:]]` space and tab
+* `[[:blank:]]` space and TAB
 
 redirection
 pipelines

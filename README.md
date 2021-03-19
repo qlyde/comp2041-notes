@@ -123,7 +123,7 @@ Print the first 10 lines of each file to standard output.
 
 **Usage:** `head [OPTION]... [FILE]...`
 
-* `-n, --lines=NUM` print the first `NUM` lines instead of the first 10
+* `-n NUM, --lines=NUM` print the first `NUM` lines instead of the first 10
 
 ### `tail`
 
@@ -131,7 +131,7 @@ Print the last 10 lines of each file to standard output.
 
 **Usage:** `tail [OPTION]... [FILE]...`
 
-* `-n, --lines=NUM` print the last `NUM` lines instead of the last 10
+* `-n NUM, --lines=NUM` print the last `NUM` lines instead of the last 10
 
 ## Regular Expressions
 

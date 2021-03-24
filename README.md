@@ -13,6 +13,7 @@ WIP!
     - [`head`](#head)
     - [`tail`](#tail)
     - [`cut`](#cut)
+    - [`sort`](#sort)
 3. [Regular Expressions](#regular-expressions)
 
 ## Usage Statements
@@ -38,43 +39,54 @@ Concatenate file(s) to standard output.
 
 * `-A, --show-all` display non-printing characters
 * `-n, --number` number all output lines, starting from 1
+* `-b, --number-nonblank` number non-empty output lines, overrides `-n`
 * `-s, --squeeze-blank` squeeze consecutive blank lines into one
-* `-T, --show-tabs` display TAB characters as `^I`
 
 ### `grep`
 
-Print lines that match a regular expression.
+Print lines that match pattern(s).
 
-**Usage:** `grep [OPTION]... PATTERNS [FILE]...`
+**Usage:** `grep [OPTION]... PATTERNS [FILE]...` or `grep [OPTION]... -f PATTERN_FILE [FILE]...`
 
 * Typically, `PATTERNS` should be **single-quoted** to avoid misinterpretation
-    - eg. `grep | file.txt` fails but `grep '|' file.txt` does not
+* Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively
 
-**Variations**
+**Useful Options**
 
-Variant programs `egrep`, `fgrep` and `rgrep` are deprecated, instead use `-E`, `-F` and `-r` respectively.
+Pattern Syntax
 
 * `-G, --basic-regexp` interpret `PATTERNS` as basic regex (default)
     - In basic regular expressions, characters `? + | {} ()` lose their special meaning
 * `-E, --extended-regexp` interpret `PATTERNS` as extended regex (`egrep`)
 * `-F, --fixed-strings` interpret `PATTERNS` as fixed strings, not regex (`fgrep`)
 * `-P, --perl-regexp` interpret `PATTERNS` as Perl-compatible regex
-* `-r, --recursive` read all files under each directory recursively (cwd if none specified) (`rgrep`)
 
-**Useful Options**
+Matching Control
 
-* `-i, --ignore-case` ignore case in patterns
+* `-f FILE, --file=FILE` obtain patterns from `FILE`, one per line
+* `-i, --ignore-case` ignore case distinctions in patterns and input data
 * `-v, --invert-match` invert matching to select non-matching lines only
 * `-w, --word-regexp` select only lines containing matches that form whole words
-* `-o, --only-matching` print only the matched parts of a matching line
-* `-H, --with-filename` print also the filename for each match
+* `-x, --line-regexp` select only those matches that match the whole line
+    - Equivalent to wrapping a regular expression pattern with `^(...)$`
+
+General Output Control
+
 * `-c, --count` print only the count of matching lines
-* `-n, --line-number` prefix each output line with 1-based line number
-* `-a, --text` process a binary file as if it were text
-* `-f FILE, --file=FILE` obtain patterns from `FILE`, one per line
-* `-q, --quiet, --silent` do not write to standard output and immediately exit with status 0 if match found
 * `-L, --files-without-match` print only the name of each file with no matches
 * `-l, --files-with-matches` print only the name of each file with matches
+* `-o, --only-matching` print only the matched parts of a matching line
+* `-q, --quiet, --silent` do not write to standard output and immediately exit with status 0 if match found
+
+Output Line Prefix Control
+
+* `-H, --with-filename` print also the filename for each match
+* `-n, --line-number` prefix each output line with 1-based line number
+
+File and Directory Selection
+
+* `-a, --text` process a binary file as if it were text
+* `-r, --recursive` read all files under each directory recursively (cwd if none specified) (`rgrep`)
 
 ### `wc`
 
@@ -84,7 +96,8 @@ Print newline, word and byte counts for each file (and total counts if multiple 
 
 **Useful Options**
 
-* `-c, --bytes` print byte counts (UTF-8 uses 1-4 bytes, ASCII uses 1 byte)
+* `-c, --bytes` print byte counts
+    - UTF-8 uses 1-4 bytes per character, ASCII uses 1 byte per character
 * `-m, --chars` print character counts
 * `-l, --lines` print newline counts
 * `-w, --words` print word counts
@@ -97,11 +110,12 @@ Translate, squeeze and/or delete characters from (**only**) standard input.
 **Usage:** `tr [OPTION]... SET1 [SET2]`
 
 * Each character in `SET1` is translated/mapped to the **corresponding** character in `SET2`
+    - `tr 'abc' 'xyz'` maps 'a' to 'x', 'b' to 'y' and 'c' to 'z'
 * If `SET2` is shorter than `SET1`, then the last character in `SET2` is used to map the remainder of `SET1`
 * If `SET2` is longer than `SET1`, then excess characters in `SET2` are ignored
 * Sets interpret certain sequences:
     - `\\` backslash
-    - `a-z` a to z
+    - `a-z` is 'a' to 'z'
     - `[a*]` in `SET2` copies 'a' until length of `SET1`
     - `[:upper:]`, `[:lower:]`, etc
 
@@ -117,6 +131,8 @@ Print the first 10 lines of each file to standard output.
 
 **Usage:** `head [OPTION]... [FILE]...`
 
+**Useful Options**
+
 * `-n NUM, --lines=NUM` print the first `NUM` lines instead of the first 10
 
 ### `tail`
@@ -124,6 +140,8 @@ Print the first 10 lines of each file to standard output.
 Print the last 10 lines of each file to standard output.
 
 **Usage:** `tail [OPTION]... [FILE]...`
+
+**Useful Options**
 
 * `-n NUM, --lines=NUM` print the last `NUM` lines instead of the last 10
 
@@ -138,20 +156,22 @@ Print selected parts of lines from each file to standard output.
 **Useful Options**
 
 * `-d DELIM, --delimiter=DELIM` use `DELIM` instead of TAB to delimit fields
-    - `DELIM` should be single-quoted to avoid misinterpretation, eg. `-d|` fails but `-d'|'` does not
+    - `DELIM` should be single-quoted to avoid misinterpretation
 * `-f LIST, --fields=LIST` select only these fields
-    - `-fN` select field N
-    - `-fN-` select field N and onward
-    - `-f-N` select fields 1 to N (inclusive)
-    - `-fN-M` select fields N to M (inclusive)
-    - `-fN,M` select fields N and M
+    - `-fN` select field `N`
+    - `-fN-` select field `N` and onward
+    - `-f-N` select fields 1 to `N`
+    - `-fN-M` select fields `N` to `M`
+    - `-fN,M` select fields `N` and `M`
 * `-c LIST, --characters=LIST` select only these characters
-    - `-cN` select character N
-    - `-cN-` select character N and onward
-    - `-c-N` select characters 1 to N (inclusive)
-    - `-cN-M` select characters N to M (inclusive)
-    - `-cN,M` select characters N and M
+    - `-cN` select character `N`
+    - `-cN-` select character `N` and onward
+    - `-c-N` select characters 1 to `N`
+    - `-cN-M` select characters `N` to `M`
+    - `-cN,M` select characters `N` and `M`
+* `--complement` print the complement of selected characters/fields
 * `-s, --only-delimited` do not print lines not containing delimiters
+* `--output-delimiter=STRING` use `STRING` as the output delimiter instead of the input delimiter
 
 ## Regular Expressions
 
@@ -203,3 +223,6 @@ Every regular expression can be written using only `() * | \`.
 
 redirection
 pipelines
+
+
+which whereis whatis find locate

@@ -53,7 +53,7 @@ Print lines that match pattern(s).
 
 **Useful Options**
 
-Pattern Syntax
+*Pattern Syntax*
 
 * `-G, --basic-regexp` interpret `PATTERNS` as basic regex (default)
     - In basic regular expressions, characters `? + | {} ()` lose their special meaning
@@ -61,7 +61,7 @@ Pattern Syntax
 * `-F, --fixed-strings` interpret `PATTERNS` as fixed strings, not regex (`fgrep`)
 * `-P, --perl-regexp` interpret `PATTERNS` as Perl-compatible regex
 
-Matching Control
+*Matching Control*
 
 * `-f FILE, --file=FILE` obtain patterns from `FILE`, one per line
 * `-i, --ignore-case` ignore case distinctions in patterns and input data
@@ -70,7 +70,7 @@ Matching Control
 * `-x, --line-regexp` select only those matches that match the whole line
     - Equivalent to wrapping a regular expression pattern with `^(...)$`
 
-General Output Control
+*General Output Control*
 
 * `-c, --count` print only the count of matching lines
 * `-L, --files-without-match` print only the name of each file with no matches
@@ -78,12 +78,12 @@ General Output Control
 * `-o, --only-matching` print only the matched parts of a matching line
 * `-q, --quiet, --silent` do not write to standard output and immediately exit with status 0 if match found
 
-Output Line Prefix Control
+*Output Line Prefix Control*
 
 * `-H, --with-filename` print also the filename for each match
 * `-n, --line-number` prefix each output line with 1-based line number
 
-File and Directory Selection
+*File and Directory Selection*
 
 * `-a, --text` process a binary file as if it were text
 * `-r, --recursive` read all files under each directory recursively (cwd if none specified) (`rgrep`)
@@ -173,9 +173,29 @@ Print selected parts of lines from each file to standard output.
 * `-s, --only-delimited` do not print lines not containing delimiters
 * `--output-delimiter=STRING` use `STRING` as the output delimiter instead of the input delimiter
 
-## Regular Expressions
+### `sort`
 
-Every regular expression can be written using only `() * | \`.
+Write sorted concatenation of all file(s) to standard output.
+
+**Usage:** `sort [OPTION]... [FILE]...`
+
+**Useful Options**
+
+* `-n, --numeric-sort` sort numerically instead of lexicographically
+    - 1, 10, 2 is sorted lexicographically but 1, 2, 10 is sorted numerically
+* `-r, --reverse` reverse result of comparisons
+* `-k KEYDEF, --key=KEYDEF` sort via a key
+    - `KEYDEF` is `F[.C][OPTS][,F[.C][OPTS]]`
+    - `F` is a field number
+    - `C` is a character position in the field
+* `-t SEP, --field-separator=SEP` use SEP instead of non-blank to blank transition
+    - `SEP` should be single-quoted to avoid misinterpretation, eg. `-t|` fails but `-t'|'` does not
+* `-d, --dictionary-order` only consider blanks and alphanumeric characters
+* `-f, --ignore-case` ignore case when sorting
+* `-b, --ignore-leading-blanks` ignore leading blanks when sorting
+* `-R, --random-sort` shuffle
+
+## Regular Expressions
 
 ### Quantifiers
 
@@ -190,7 +210,7 @@ Every regular expression can be written using only `() * | \`.
 
 * `.` any character except `\n`
 * `(...)` group
-* `(a|b)` a or b (**alternation** or OR operand)
+* `(a|b)` a or b (**alternation**)
 * `[abc]` any one of a, b or c
 * `[^abc]` any one **not** a, b or c
 * `[a-z]` a to z (inclusive)
@@ -223,6 +243,4 @@ Every regular expression can be written using only `() * | \`.
 
 redirection
 pipelines
-
-
 which whereis whatis find locate
